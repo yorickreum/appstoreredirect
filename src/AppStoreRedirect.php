@@ -1,4 +1,5 @@
 <?php
+
 namespace AppStoreRedirect;
 
 use Detection\MobileDetect;
@@ -39,7 +40,7 @@ class AppStoreRedirect
      *
      * @return int
      */
-    public function getDelay() : int
+    public function getDelay(): int
     {
         return $this->config['delay'] ?? 0;
     }
@@ -49,7 +50,7 @@ class AppStoreRedirect
      *
      * @return string
      */
-    public function getFallbackPath() : string
+    public function getFallbackPath(): string
     {
         return $this->config['fallback']['path'] ?? '';
     }
@@ -59,7 +60,7 @@ class AppStoreRedirect
      *
      * @return string
      */
-    public function getPlatform() : array
+    public function getPlatform(): array
     {
         return $this->platform;
     }
@@ -69,7 +70,7 @@ class AppStoreRedirect
      *
      * @return string
      */
-    public function getPath() : string
+    public function getPath(): string
     {
         return $this->platform['path'] ?? $this->getFallbackPath();
     }
@@ -79,7 +80,7 @@ class AppStoreRedirect
      *
      * @return AppStoreRedirect
      */
-    public function printMessage() : AppStoreRedirect
+    public function printMessage(): AppStoreRedirect
     {
         echo $this->platform['message'] ?? '';
 
@@ -89,13 +90,12 @@ class AppStoreRedirect
     /**
      * Redirect
      *
-     * @param  string $path
+     * @param string $path
      * @return void
      */
     public function redirect(string $path)
     {
-        header("refresh:{$this->getDelay()}; url={$path}");
-        echo '<script>window.location.replace("$path");</script>';
+        header("refresh:{$this->getDelay()}; url={$path}", true, 301);
         die(); # see http://thedailywtf.com/articles/WellIntentioned-Destruction
     }
 
@@ -106,8 +106,8 @@ class AppStoreRedirect
      */
     public function run()
     {
-        $this->printMessage()
-             ->redirect($this->getPath());
+        $this->redirect($this->getPath());
+        $this->printMessage();
     }
 
     /**
