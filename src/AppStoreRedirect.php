@@ -95,8 +95,8 @@ class AppStoreRedirect
      */
     public function redirect(string $path)
     {
-        header("refresh:{$this->getDelay()}; location: {$path}", true, 301);
-        die(); # see http://thedailywtf.com/articles/WellIntentioned-Destruction
+        # header("refresh:{$this->getDelay()}; location: {$path}", true, 301);
+        # die(); # see http://thedailywtf.com/articles/WellIntentioned-Destruction
     }
 
     /**
