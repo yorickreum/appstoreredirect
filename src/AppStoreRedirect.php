@@ -95,6 +95,7 @@ class AppStoreRedirect
     public function redirect(string $path)
     {
         header("refresh:{$this->getDelay()}; url={$path}");
+        echo '<script>window.location.replace("$path");</script>';
         die(); # see http://thedailywtf.com/articles/WellIntentioned-Destruction
     }
 
