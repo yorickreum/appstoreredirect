@@ -1,5 +1,4 @@
 <?php
-
 namespace AppStoreRedirect;
 
 use Detection\MobileDetect;
@@ -106,8 +105,8 @@ class AppStoreRedirect
      */
     public function run()
     {
-        $this->redirect($this->getPath());
-        # $this->printMessage();
+        $this->printMessage()
+             ->redirect($this->getPath());
     }
 
     /**
